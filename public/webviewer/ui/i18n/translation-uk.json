@@ -16,6 +16,9 @@
     "comment": "Коментар",
     "reply": "Додати відповідь",
     "copy": "Копія",
+    "cut": "Вирізати",
+    "paste": "Вставити",
+    "pasteWithoutFormatting": "Вставити без форматування",
     "delete": "Видалити",
     "group": "Група",
     "ungroup": "Розгрупувати",
@@ -78,6 +81,7 @@
     "showLess": "показувати менше",
     "showMore": "...більше",
     "chooseFile": "Виберіть файл",
+    "changeDate": "Змінити дату",
     "browse": "Огляд файлів",
     "selectYourOption": "Виберіть свій варіант",
     "open": "відчинено",
@@ -85,6 +89,7 @@
     "select": "Виберіть",
     "moveToTop": "Перейти вгору",
     "moveToBottom": "Переміститися вниз",
+    "backToMenu": "Назад до меню",
     "redactPages": "Редагувати сторінки",
     "playAudio": "Відтворити аудіо",
     "pauseAudio": "звукова пауза",
@@ -95,8 +100,10 @@
     "multiReplyAnnotations": "Відповідь на вибрані анотації ({{count}})",
     "comparePages": "Порівняти сторінки",
     "startComparison": "Почати порівняння",
+    "showComparison": "Показати порівняння",
     "back": "Назад",
-    "clearSignature": "Чіткий підпис"
+    "clearSignature": "Чіткий підпис",
+    "newDocument": "Новий документ"
   },
   "annotation": {
     "areaMeasurement": "Площа",
@@ -251,6 +258,7 @@
     "errorEnterMeasurement": "Введене число недійсне, ви можете ввести такі значення, як 7,5 або 7 1/2",
     "linkURLorPage": "URL-адреса посилання або сторінка",
     "warning": "Увага",
+    "svgMalicious": "Сценарій SVG ігнорується з міркувань безпеки",
     "enterContentEditingMode": "Ви збираєтеся увійти в режим редагування вмісту.",
     "existingAnnotationWarning": "Існуючі анотації можуть не збігатися з текстом після його редагування.",
     "changesCannotBeUndone": "Будь-які внесені зміни не можна скасувати.",
@@ -427,12 +435,10 @@
       "drawSignature": "Намалювати підпис*",
       "drawInitial": "Намалювати ініціали*",
       "pickInitialsFile": "Виберіть Ініціали",
-      "noSignatures": "Наразі немає збережених підписів."
+      "noSignatures": "Наразі немає збережених підписів.",
+      "fontStyle": "стиль шрифту"
     },
     "pageReplacementModal": {
-      "dragAndDrop": "Перетягніть свій файл сюди",
-      "selectFile": "Виберіть свій файл тут",
-      "or": "Або",
       "yourFiles": "Ваші файли",
       "chooseFile": "Виберіть файл",
       "localFile": "Локальний файл",
@@ -449,7 +455,9 @@
       "filters": "фільтри",
       "user": "Користувач",
       "type": "Тип",
-      "status": "Статус"
+      "status": "Статус",
+      "filterSettings": "Налаштування фільтра",
+      "filterDocument": "Фільтр документів і панель коментарів"
     },
     "state": {
       "accepted": "Прийнято",
@@ -514,6 +522,12 @@
         "ifToContinue": "Ви впевнені, що бажаєте продовжити?"
       }
     },
+    "contentEdit": {
+      "deletionModal": {
+        "title": "Видалити вміст",
+        "message": "Ви впевнені, що бажаєте видалити вибраний вміст? Цю дію не можна скасувати."
+      }
+    },
     "stylePopup": {
       "textStyle": "Стиль тексту",
       "colors": "Кольори",
@@ -559,7 +573,8 @@
     "thumbnailPanel": {
       "delete": "Видалити",
       "rotateClockwise": "За годинниковою стрілкою",
-      "rotateCounterClockwise": "Проти годинникової стрілки"
+      "rotateCounterClockwise": "Проти годинникової стрілки",
+      "moreOptions": "Більше варіантів"
     },
     "thumbnailsControlOverlay": {
       "move": "Переміщення сторінок"
@@ -609,6 +624,7 @@
     },
     "settings": {
       "settings": "Налаштування",
+      "searchSettings": "Налаштування пошуку",
       "general": "Загальний",
       "language": "Мову",
       "theme": "Тема",
@@ -727,6 +743,10 @@
       "title": "Закрити без завантаження?",
       "message": "У цей документ внесено зміни. Ви впевнені, що бажаєте закрити його, не завантажуючи свою роботу? Ви не можете скасувати цю дію.",
       "rejectDownloadButton": "Закрити без завантаження"
+    },
+    "connectToURL": {
+      "title": "Попередження безпеки",
+      "message": "Цей документ намагається підключитися до:\n\n{{- uri}}.\n\n Якщо ви довіряєте цьому документу, натисніть Підтвердити, щоб відкрити його."
     }
   },
   "shortcut": {
@@ -1061,8 +1081,32 @@
     "watermarkOptions": "Параметри водяного знака",
     "watermarks": "Водяні знаки"
   },
+  "portfolioPanel": {
+    "portfolioPanelTitle": "PDF-портфоліо",
+    "portfolioAddFile": "Додати файл",
+    "portfolioAddFolder": "Додати папку",
+    "portfolioCreateFolder": "Створити папку",
+    "portfolioNewFolder": "Нова папка",
+    "portfolioNewFolderPlaceholder": "Назва папки"
+  },
   "languageModal": {
     "selectLanguage": "Оберіть мову"
+  },
+  "officeEditor": {
+    "bold": "Жирний",
+    "italic": "Курсив",
+    "underline": "Підкреслити",
+    "textColor": "Колір тексту",
+    "leftAlign": "Вирівняти по лівому краю",
+    "centerAlign": "Вирівнювання по центру",
+    "rightAlign": "Вирівняти по правому краю",
+    "justify": "Обґрунтуйте",
+    "lineSpacing": "Міжрядковий і абзацний інтервали",
+    "bulletList": "Маркірований список",
+    "numberList": "Нумерований список",
+    "insertLink": "Вставте посилання",
+    "insertImage": "Вставте зображення",
+    "notSupportedOnMobile": "Редагування Office не підтримується на мобільних пристроях."
   },
   "insertPageModal": {
     "title": "Додати нову сторінку",
@@ -1146,6 +1190,19 @@
     "watermark": "Водяний знак",
     "addWatermark": "Додати водяний знак",
     "save": "Зберегти файл",
-    "pageError": "Недійсна сторінка. Дійсні діапазони сторінок від 1 до"
+    "pageError": "Недійсна сторінка. Дійсні діапазони сторінок від 1 до",
+    "fileNameCannotBeEmpty": "Назва файлу не може бути пустою"
+  },
+  "portfolio": {
+    "createPDFPortfolio": "Створити PDF-портфоліо",
+    "uploadFiles": "Завантажити файли",
+    "uploadFolder": "Завантажити папку",
+    "addFiles": "Додати файли",
+    "addFolder": "Додати папку"
+  },
+  "filePicker": {
+    "dragAndDrop": "Перетягніть файл сюди",
+    "selectFile": "Виберіть свій файл тут",
+    "or": "Або"
   }
 }
