@@ -1,18 +1,15 @@
-import { WebviewerContext } from '../context/webviewer-context';
 import { useCallback, useContext, useEffect } from 'react';
 
+import { WebviewerContext } from '../context/webviewer-context';
 
-
-
-export const useAnnotationAddListener = (
-) => {
-
+export const useAnnotationAddListener = () => {
   const { instance } = useContext(WebviewerContext);
 
   const handler = useCallback(
     (annotations, action) => {
       if (instance && action === 'add') {
-        console.log(annotations)}
+        console.log(annotations);
+      }
     },
     [instance],
   );

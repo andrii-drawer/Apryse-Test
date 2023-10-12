@@ -7,13 +7,9 @@ export const useInitViewer = () => {
 
   const handler = useCallback(
     (instance) => {
-
-      handleCreateCustomTools(instance);;
+      handleCreateCustomTools(instance);
     },
-    [
-      handleCreateCustomTools,
-
-    ],
+    [handleCreateCustomTools],
   );
 
   return handler;

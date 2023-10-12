@@ -1,15 +1,14 @@
-import { WebviewerContext } from '../context/webviewer-context';
 import { useCallback, useContext, useEffect } from 'react';
 
+import { WebviewerContext } from '../context/webviewer-context';
 
-export const useAnnotationModifyListener = (
-) => {
+export const useAnnotationModifyListener = () => {
   const { instance } = useContext(WebviewerContext);
   const handler = useCallback(
     (annotations, action, info) => {
-    if (instance && action === 'modify') {
-        console.log(annotations)
-    }
+      if (instance && action === 'modify') {
+        console.log(annotations);
+      }
     },
     [instance],
   );

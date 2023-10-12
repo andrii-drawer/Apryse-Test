@@ -1,10 +1,13 @@
-import WebViewer from "@pdftron/webviewer";
-import { useEffect, useRef, useContext } from "react";
-import { useAnnotationAddListener} from './hooks/useAnnotationAddListener';
-import { useAnnotationDeleteListener} from './hooks/useAnnotationDeleteListener';
-import { useAnnotationModifyListener} from './hooks/useAnnotationsModifyListener';
-import { useInitViewer } from "./hooks/useInitViewer";
-import { WebviewerContext} from './context/webviewer-context'
+import WebViewer from '@pdftron/webviewer';
+import { useContext, useEffect, useRef } from 'react';
+
+import file from './assets/file.pdf';
+import { WebviewerContext } from './context/webviewer-context';
+import { useAnnotationAddListener } from './hooks/useAnnotationAddListener';
+import { useAnnotationDeleteListener } from './hooks/useAnnotationDeleteListener';
+import { useAnnotationModifyListener } from './hooks/useAnnotationsModifyListener';
+import { useInitViewer } from './hooks/useInitViewer';
+import { useScrollOnMouseListener } from './hooks/useScrollOnMouseWheelListener';
 
 function App() {
   const viewer = useRef(null);
@@ -15,40 +18,35 @@ function App() {
     WebViewer(
       {
         path: '/webviewer',
-        initialDoc:
-                "https://pdftron.s3.amazonaws.com/downloads/pl/demo-annotated.pdf",
+        initialDoc: file,
         enableMeasurement: true,
       },
       viewer.current,
     ).then((webviewerInstance) => {
       setInstanceContext(webviewerInstance);
-      initViewer(webviewerInstance);
+      initViewer(webViewerInstance);
+      // const deltaZoomIn = documentViewer.getZoomLevel() + 0.25;
+      // const maxZoomLevel = webviewerInstance.UI.getMaxZoomLevel();
 
-      const {
-        Core: { documentViewer },
-      } = webviewerInstance;
-
-      const deltaZoomIn = documentViewer.getZoomLevel() + 0.25;
-      const maxZoomLevel = webviewerInstance.UI.getMaxZoomLevel();
-
-      documentViewer.zoomTo(deltaZoomIn < maxZoomLevel ? deltaZoomIn : maxZoomLevel);
+      // documentViewer.zoomTo(deltaZoomIn < maxZoomLevel ? deltaZoomIn : maxZoomLevel);
     });
-  }, [initViewer, setInstanceContext]);
+  }, [initViewer, setInstanceContext, webViewerInstance]);
 
   useAnnotationAddListener();
   useAnnotationModifyListener();
   useAnnotationDeleteListener();
+  useScrollOnMouseListener();
 
   return (
-    <div style={{ width: "100vw", height: "100vh", background: "gray" }}>
+    <div style={{ width: '100vw', height: '100vh', background: 'gray' }}>
       <div
-        className="webviewer"
+        className='webviewer'
         ref={viewer}
         style={{
-          height: "100%",
-          width: "100%",
-          position: "relative",
-          borderRadius: "0.25rem",
+          height: '100%',
+          width: '100%',
+          position: 'relative',
+          borderRadius: '0.25rem',
         }}
       />
     </div>

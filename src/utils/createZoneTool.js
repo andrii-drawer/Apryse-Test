@@ -12,7 +12,6 @@ export const createZoneTool = (instanceCore) => {
     const annot = options.annotation;
     // console.log(element);
     // options.originalSerialize(element, pageMatrix);
-    // @ts-ignore
     element.setAttribute('myAttr', '1');
 
     return element;
@@ -21,26 +20,21 @@ export const createZoneTool = (instanceCore) => {
   Annotations.setCustomDeserializeHandler(ZoneAnnotation, (element, pageMatrix, options) => {
     const annot = options.annotation;
     options.originalDeserialize(element, pageMatrix);
-    // @ts-ignore
     annot.myProperty = element.getAttribute('myAttr');
   });
 
   Annotations.setCustomDrawHandler(
     ZoneAnnotation,
     function drawHandler(ctx, pageMatrix, rotation, options) {
-      // @ts-ignore
       options.annotation.elementType = 'PREFERRED_ZONE';
       options.annotation.disableRotationControl();
       options.originalDraw(ctx, pageMatrix, rotation);
 
       let fontSize;
 
-      // @ts-ignore
       if (this.Height > this.Width) {
-        // @ts-ignore
         fontSize = this.Width * 0.1;
       } else {
-        // @ts-ignore
         fontSize = this.Height * 0.1;
       }
 
@@ -49,9 +43,7 @@ export const createZoneTool = (instanceCore) => {
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
       ctx.font = `100 ${fontSize || 0}px sans-serif`;
-      // @ts-ignore
       const X = this.X + this.Width / 2;
-      // @ts-ignore
       const Y = this.Y + this.Height / 2;
       ctx.fillText('PREFERRED_ZONE', X, Y);
       ctx.restore();
@@ -61,12 +53,8 @@ export const createZoneTool = (instanceCore) => {
   const ZoneCreateTool = new Tools.GenericAnnotationCreateTool(documentViewer, ZoneAnnotation);
 
   const defaults = {
-    StrokeColor:
-
-       new Annotations.Color(0, 155, 119, 1),
-    FillColor:
-
-         new Annotations.Color(0, 155, 119, 0.7),
+    StrokeColor: new Annotations.Color(0, 155, 119, 1),
+    FillColor: new Annotations.Color(0, 155, 119, 0.7),
     Opacity: 1,
     StrokeThickness: 1,
   };
